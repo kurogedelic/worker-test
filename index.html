@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>worker test</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app">
+    <header>
+      <nav>
+        <button class="tab active" data-view="star">STAR</button>
+        <button class="tab" data-view="wheel">WHEEL</button>
+        <button class="tab" data-view="color">COLOR</button>
+      </nav>
+      <div class="transport">
+        <button id="audioButton">START AUDIO</button>
+        <button id="recordButton" disabled>REC</button>
+      </div>
+    </header>
+
+    <section id="star" class="view active">
+      <div class="stage-wrap"><canvas id="starCanvas"></canvas></div>
+      <aside class="controls">
+        <label>ENGINE<select id="starEngine"><option value="sandpile">SANDPILE</option><option value="kuramoto">COUPLED PHASE</option><option value="walker">WALKER</option><option value="ca">CYCLIC CA</option></select></label>
+        <label>DENSITY<input id="starDensity" type="range" min="0" max="1" step="0.001" value="0.52"></label>
+        <label>MOTION<input id="starMotion" type="range" min="0" max="1" step="0.001" value="0.44"></label>
+        <label>TONE<input id="starTone" type="range" min="0" max="1" step="0.001" value="0.64"></label>
+        <div class="button-row"><button id="starFreeze">FREEZE</button><button id="starSeed">RESEED</button></div>
+        <pre id="starInfo"></pre>
+      </aside>
+    </section>
+
+    <section id="wheel" class="view">
+      <div class="stage-wrap"><canvas id="wheelCanvas"></canvas></div>
+      <aside class="controls">
+        <label>ENGINE<select id="wheelEngine"><option value="rigid">RIGID</option><option value="spring">SPRING</option><option value="slip">SLIP</option><option value="circle">CIRCLE MAP</option></select></label>
+        <label>FRICTION<input id="wheelFriction" type="range" min="0.15" max="3" step="0.01" value="0.72"></label>
+        <label>SPREAD<input id="wheelSpread" type="range" min="0" max="1" step="0.001" value="0.48"></label>
+        <label>DRIVE<input id="wheelDrive" type="range" min="0" max="1" step="0.001" value="0.56"></label>
+        <button id="wheelImpulse">IMPULSE</button>
+        <pre id="wheelInfo"></pre>
+      </aside>
+    </section>
+
+    <section id="color" class="view">
+      <div class="stage-wrap color-stage">
+        <div id="colorField"><div id="colorCore"></div></div>
+      </div>
+      <aside class="controls">
+        <label>ENGINE<select id="colorEngine"><option value="adapt">ADAPTATION</option><option value="after">AFTERIMAGE</option><option value="hysteresis">HYSTERESIS</option><option value="direct">DIRECT</option></select></label>
+        <label>COLOR<input id="colorInput" type="color" value="#cb5d42"></label>
+        <label>MEMORY<input id="colorMemory" type="range" min="0" max="1" step="0.001" value="0.82"></label>
+        <label>DRONE<input id="colorDrone" type="range" min="0" max="1" step="0.001" value="0.57"></label>
+        <label>ROUGH<input id="colorRough" type="range" min="0" max="1" step="0.001" value="0.32"></label>
+        <button id="colorReset">RESET ADAPTATION</button>
+        <pre id="colorInfo"></pre>
+      </aside>
+    </section>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
