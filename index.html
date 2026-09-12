@@ -12,7 +12,8 @@
       <nav>
         <button class="tab active" data-view="star">STAR</button>
         <button class="tab" data-view="wheel">WHEEL</button>
-        <button class="tab" data-view="color">COLOR</button>
+        <button class="tab" data-view="strength">STRENGTH</button>
+        <button class="tab" data-view="judgement">JUDGEMENT</button>
       </nav>
       <div class="transport">
         <button id="audioButton">START AUDIO</button>
@@ -23,39 +24,83 @@
     <section id="star" class="view active">
       <div class="stage-wrap"><canvas id="starCanvas"></canvas></div>
       <aside class="controls">
-        <label>ENGINE<select id="starEngine"><option value="sandpile">SANDPILE</option><option value="kuramoto">COUPLED PHASE</option><option value="walker">WALKER</option><option value="ca">CYCLIC CA</option></select></label>
-        <label>DENSITY<input id="starDensity" type="range" min="0" max="1" step="0.001" value="0.52"></label>
-        <label>MOTION<input id="starMotion" type="range" min="0" max="1" step="0.001" value="0.44"></label>
-        <label>TONE<input id="starTone" type="range" min="0" max="1" step="0.001" value="0.64"></label>
-        <div class="button-row"><button id="starFreeze">FREEZE</button><button id="starSeed">RESEED</button></div>
-        <pre id="starInfo"></pre>
+        <div class="surface">
+          <label>DENSITY<input id="starDensity" type="range" min="0" max="1" step="0.001" value="0.52"></label>
+          <label>MOTION<input id="starMotion" type="range" min="0" max="1" step="0.001" value="0.44"></label>
+          <label>TONE<input id="starTone" type="range" min="0" max="1" step="0.001" value="0.64"></label>
+          <div class="button-row"><button id="starFreeze">FREEZE</button><button id="starSeed">RESEED</button></div>
+        </div>
+        <details class="editor">
+          <summary>EDITOR</summary>
+          <label>ENGINE<select id="starEngine"><option value="sandpile">SANDPILE</option><option value="kuramoto">COUPLED PHASE</option><option value="walker">WALKER</option><option value="ca">CYCLIC CA</option></select></label>
+          <pre id="starInfo"></pre>
+        </details>
       </aside>
     </section>
 
     <section id="wheel" class="view">
       <div class="stage-wrap"><canvas id="wheelCanvas"></canvas></div>
       <aside class="controls">
-        <label>ENGINE<select id="wheelEngine"><option value="rigid">RIGID</option><option value="spring">SPRING</option><option value="slip">SLIP</option><option value="circle">CIRCLE MAP</option></select></label>
-        <label>FRICTION<input id="wheelFriction" type="range" min="0.15" max="3" step="0.01" value="0.72"></label>
-        <label>SPREAD<input id="wheelSpread" type="range" min="0" max="1" step="0.001" value="0.48"></label>
-        <label>DRIVE<input id="wheelDrive" type="range" min="0" max="1" step="0.001" value="0.56"></label>
-        <button id="wheelImpulse">IMPULSE</button>
-        <pre id="wheelInfo"></pre>
+        <div class="surface">
+          <label>FRICTION<input id="wheelFriction" type="range" min="0.15" max="3" step="0.01" value="0.72"></label>
+          <label>SPREAD<input id="wheelSpread" type="range" min="0" max="1" step="0.001" value="0.48"></label>
+          <label>DRIVE<input id="wheelDrive" type="range" min="0" max="1" step="0.001" value="0.56"></label>
+          <button id="wheelImpulse">IMPULSE</button>
+        </div>
+        <details class="editor">
+          <summary>EDITOR</summary>
+          <label>ENGINE<select id="wheelEngine"><option value="rigid">RIGID</option><option value="spring">SPRING</option><option value="slip">SLIP</option><option value="circle">CIRCLE MAP</option></select></label>
+          <pre id="wheelInfo"></pre>
+        </details>
       </aside>
     </section>
 
-    <section id="color" class="view">
-      <div class="stage-wrap color-stage">
-        <div id="colorField"><div id="colorCore"></div></div>
+    <section id="strength" class="view">
+      <div class="stage-wrap"><canvas id="strengthPad" class="tarot-pad"></canvas></div>
+      <aside class="controls">
+        <div class="tarot-leds" id="strengthLeds"></div>
+        <div class="surface">
+          <label>DENSITY<input id="strengthDensity" type="range" min="0" max="1" step="0.001" value="0.50"></label>
+          <label>MATTER<input id="strengthMatter" type="range" min="0" max="1" step="0.001" value="0.50"></label>
+          <label>DECAY<input id="strengthDecay" type="range" min="0" max="1" step="0.001" value="0.50"></label>
+          <label>CHAOS<input id="strengthChaos" type="range" min="0" max="1" step="0.001" value="0.50"></label>
+        </div>
+        <details class="editor">
+          <summary>EDITOR</summary>
+          <div class="param-groups" id="strengthParams"></div>
+        </details>
+      </aside>
+    </section>
+
+    <section id="judgement" class="view">
+      <div class="stage-wrap judgement-stage">
+        <canvas id="judgementPad" class="tarot-pad"></canvas>
+        <div id="judgementGlow"></div>
       </div>
       <aside class="controls">
-        <label>ENGINE<select id="colorEngine"><option value="adapt">ADAPTATION</option><option value="after">AFTERIMAGE</option><option value="hysteresis">HYSTERESIS</option><option value="direct">DIRECT</option></select></label>
-        <label>COLOR<input id="colorInput" type="color" value="#cb5d42"></label>
-        <label>MEMORY<input id="colorMemory" type="range" min="0" max="1" step="0.001" value="0.82"></label>
-        <label>DRONE<input id="colorDrone" type="range" min="0" max="1" step="0.001" value="0.57"></label>
-        <label>ROUGH<input id="colorRough" type="range" min="0" max="1" step="0.001" value="0.32"></label>
-        <button id="colorReset">RESET ADAPTATION</button>
-        <pre id="colorInfo"></pre>
+        <div class="tarot-leds" id="judgementLeds"></div>
+        <div class="surface">
+          <label>LIGHT<input id="judgementColor" type="color" value="#99514c"></label>
+          <label>FORM<input id="judgementForm" type="range" min="0" max="1" step="0.001" value="0.52"></label>
+          <label>GLOW<input id="judgementGlowMacro" type="range" min="0" max="1" step="0.001" value="0.48"></label>
+          <label>MOTION<input id="judgementMotion" type="range" min="0" max="1" step="0.001" value="0.35"></label>
+          <label>SPACE<input id="judgementSpace" type="range" min="0" max="1" step="0.001" value="0.48"></label>
+          <button id="judgementFreeze">FREEZE</button>
+        </div>
+        <details class="editor">
+          <summary>EDITOR</summary>
+          <label>LIGHT MEMORY
+            <select id="judgementLightMode">
+              <option value="adapt">ADAPTATION</option>
+              <option value="after">AFTERIMAGE</option>
+              <option value="hysteresis">HYSTERESIS</option>
+              <option value="direct">DIRECT</option>
+            </select>
+          </label>
+          <label>MEMORY<input id="judgementMemory" type="range" min="0" max="1" step="0.001" value="0.82"></label>
+          <button id="judgementResetLight">RESET LIGHT MEMORY</button>
+          <div class="param-groups" id="judgementParams"></div>
+        </details>
       </aside>
     </section>
   </main>
